@@ -1,0 +1,252 @@
+<!-- 사용자로 부터 값을 입력받아 위와 같은 표가 나올 수 있도록 하시오. 
+    URL 은 /sample/exam/에서 사용자 입력폼을 보여주고, /sample/exam/html에서 위의 표 양식을 보여주면 됨. -->
+
+<!--  recheck!!!!
+<!DOCTYPE html>
+<html>
+<head>
+    <title>사용자 입력</title>
+</head>
+<body>
+        <form action="/sample/exam/result" method="POST">{% csrf_token %}        
+        <div>
+            TV 시청: <input type="text" name="tv">    
+        </div>
+        <div>
+            인터넷 검색 : <input type="text" name="internet">
+        </div>
+        <div>
+            산책 : <input type="text" name="sancheck">
+        </div>
+        <div>
+            게임 : <input type=text" name="game">
+        </div>
+        <div>
+            음악감상 : <input type="text" name="music">
+        </div>       
+        <div>
+            헬스 : <input type="text" name="health">
+        </div> 
+        <div>
+            잡담통화: <input type="text" name="calling">
+        </div> 
+        <div>
+            낮잠: <input type="text" name="nap">
+        </div> 
+        <div>
+            등산: <input type="number" name="moutaining">
+        </div>
+        <div>
+            스포츠간접관람: <input type="number" name="sports">
+        </div>  
+        <div>
+            전송 버튼 : <input type="submit" value="전송">    
+        </div>
+    </form>
+</body>
+</html>
+-->
+
+<!-- post 방식만으로 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>사용자 입력</title>
+</head>
+<body>
+        <form action="/sample/exam/result/" method="POST">{% csrf_token %}     
+            <div>   
+                <tr>
+                    <td>TV 시청></td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>인터넷 검색</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>산책></td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>    
+            <div>    
+                <tr>
+                    <td>게임></td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>
+            <div>    
+                <tr>
+                    <td>음악감상</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>    
+            <div>    
+                <tr>
+                    <td>헬스</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>
+            <div>
+                <tr>
+                    <td>잡담통화</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div> 
+            <div>    
+                <tr>
+                    <td>낮잠</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>    
+            <div>    
+                <tr>
+                    <td>등산</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>
+            <div>   
+                <tr>
+                    <td>스포츠 간접관람</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </div>
+
+        </table>
+        <input type="submit" value="전송">    
+    </form>
+</body>
+</html>
+
+--> 
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>사용자 입력</title>
+</head>
+<body>
+    {% if method == "POST" %}    
+        <table border="1">
+            <tr>
+                <td></td>
+                <td>TV 시청</td>
+                <td>인터넷 검색</td>
+                <td>산책</td>
+                <td>게임</td>
+                <td>음악감상</td>
+                <td>헬스</td>
+                <td>잡담통화</td>
+                <td>낮잠</td>
+                <td>등산</td>
+                <td>스포츠간접관람</td>
+            </tr>
+            <tr>
+                <td>남자</td>
+                {% for item in data.m_data %}
+                    <td>{{ item }}</td>
+                {% endfor %}   
+            </tr>
+            <tr>
+                <td>여자</td>
+                {% for item in data.w_data %}
+                    <td>{{ item }}</td>
+                {% endfor %}   
+            </tr>
+        </table>
+    
+    {% if method == "GET" %}    
+        <div>   
+            <tr>
+                <td>TV 시청></td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>
+        <div>
+            <tr>
+                <td>인터넷 검색</td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>
+        <div>
+            <tr>
+                <td>산책></td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>    
+        <div>    
+            <tr>
+                <td>게임></td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>
+        <div>    
+            <tr>
+                <td>음악감상</td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>    
+        <div>    
+            <tr>
+                <td>헬스</td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>
+        <div>
+            <tr>
+                <td>잡담통화</td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div> 
+        <div>    
+            <tr>
+                <td>낮잠</td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>    
+        <div>    
+            <tr>
+                <td>등산</td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>
+        <div>   
+            <tr>
+                <td>스포츠 간접관람</td>
+                <td><input type="text" name="m_data"></td>
+                <td><input type="text" name="w_data"></td>
+            </tr>
+        </div>      
+
+    {% endfor %}   
+        
+    <input type="submit" value="전송"> 
+       
+</body>
+</html>
+

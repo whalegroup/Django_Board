@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>사용자 입력</title>
+</head>
+<body>
+    {% if method == "POST" %}
+        <table border="1">
+            <tr>
+                <td></td>
+                <td>TV 시청</td>
+                <td>인터넷 검색</td>    
+                <td>산책</td>
+                <td>게임</td>
+                <td>음악감상</td>
+                <td>헬스</td>
+                <td>잡담통화</td>
+                <td>낮잠</td>
+                <td>등산</td>
+                <td>스포츠간접관람</td>
+            </tr>
+            <tr>
+                <td>남자</td>
+                {% for item in data.m_data %}
+                    <td>{{ item }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <td>여자</td>
+                {% for item in data.w_data %}
+                    <td>{{ item }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    {% elif method == "GET" %}
+        <form action="/sample/exam/" method="POST">{% csrf_token %}
+            <table>
+                <tr>
+                    <td>항목</td>
+                    <td>남자</td>
+                    <td>여자</td>
+                </tr>
+                <tr>
+                    <td>TV 시청</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>인터넷 검색</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>산책</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>게임</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>음악 감상</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>헬스</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>잡담 통화</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>낮잠</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>등산</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+                <tr>
+                    <td>스포츠간접관람</td>
+                    <td><input type="text" name="m_data"></td>
+                    <td><input type="text" name="w_data"></td>
+                </tr>
+            </table>
+            <input type="submit" value="전송">
+        </form>
+    {% endif %}
+</body>
+</html>
